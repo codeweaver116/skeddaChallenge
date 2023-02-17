@@ -2,14 +2,10 @@ resource "azurerm_mssql_server" "skedda_sql_server" {
   name                = var.sql_server_name
   location            = azurerm_resource_group.skedda_resource.location
   resource_group_name = azurerm_resource_group.skedda_resource.name
-
-  administrator_login          = var.sql_server_user #bad practice use secret vault by automaticaly using terra
+  administrator_login          = var.sql_server_user #bad practice use secret vault
   administrator_login_password = var.sql_server_password
-
-  sku_name   = "GP_Gen5_2"
   storage_mb = 5120
   version    =  "12.0"
-
   auto_grow_enabled                 = true
   backup_retention_days             = 7
   geo_redundant_backup_enabled      = true #Geo-backup_enabled for replication
@@ -19,12 +15,12 @@ resource "azurerm_mssql_server" "skedda_sql_server" {
   ssl_minimal_tls_version_enforced  = "TLS1_2"
 
    tags = {
-    environment = "MM_Assesment"
+    environment = "dev"
   }
 }
 
 resource "azurerm_mssql_database" "skedda_db" {
-  name           = "acctest-db-d"
+  name           = var.sql_db_name
   server_id      = azurerm_mssql_server.skedda_sql_server.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
@@ -34,7 +30,25 @@ resource "azurerm_mssql_database" "skedda_db" {
   zone_redundant = true
 
  tags = {
-    environment = "MM_Assesment"
+    environment = "dev"
+  }
+
+  depends_on = [
+    azurerm_mssql_server.skedda_sql_server,
+  ]
+  
+}
+
+resource "azurerm_storage_account" "skedda_blob" {
+  name                     = var.skedda_blob
+  location            = azurerm_resource_group.skedda_resource.location
+  resource_group_name = azurerm_resource_group.skedda_resource.name
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+
+  tags = {
+    environment = "dev"
   }
 }
+
 

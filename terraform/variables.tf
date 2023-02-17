@@ -53,5 +53,5 @@ variable "skedda_app_github_url" {
 
 variable "skedda_app_service_os" {
    type = string
-  default = "windows"
+  default = "Linux"
 }

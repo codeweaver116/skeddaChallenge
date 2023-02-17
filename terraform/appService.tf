@@ -10,11 +10,14 @@ resource "azurerm_service_plan" "skedda_app_service_plan" {
   name                = "${var.skedda_app_service_plan}-${random_integer.ri.result}"
   location = azurerm_resource_group.skedda_resource.location
   resource_group_name = azurerm_resource_group.skedda_resource.name
-  kind = "wind"
-  os_type             = "Linux"
+  os_type             = var.skedda_app_service_os
   sku_name            = "Standard"
+  app_settings {
+     "DbConnectionString" = "Server=tcp:${azurerm_mssql_server.skedda_sql_server.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_mssql_database.skedda_db.name};Persist Security Info=False;User ID=${azurerm_mssql_server.skedda_sql_server.administrator_login};Password=${azurerm_mssql_server.skedda_sql_server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+   }
   tags = {
-    environment = "MM Assesment"
+
+    environment = "dev"
  }
 }
 
@@ -29,8 +32,16 @@ resource "azurerm_linux_web_app" "webapp" {
     minimum_tls_version = "1.2"
   }
 
+  depends_on = [
+    
+    azurerm_service_plan.skedda_app_service_plan,
+    azurerm_mssql_server.skedda_sql_server,
+    azurerm_mssql_database.skedda_db,
+
+  ]
+
   tags = {
-    environment = "MM Assesment"
+    environment = "dev"
  }
 
 }
@@ -44,7 +55,7 @@ resource "azurerm_app_service_source_control" "sourcecontrol" {
   use_mercurial      = false
 
   tags = {
-    environment = "MM Assesment"
+    environment = "dev"
  }
 
 }
