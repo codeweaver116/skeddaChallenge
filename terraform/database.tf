@@ -12,9 +12,9 @@ resource "azurerm_mssql_server" "skedda_sql_server" {
 
   auto_grow_enabled                 = true
   backup_retention_days             = 7
-  geo_redundant_backup_enabled      = true
-  infrastructure_encryption_enabled = true
-  public_network_access_enabled     = false
+  geo_redundant_backup_enabled      = true #Geo-backup_enabled for replication
+  infrastructure_encryption_enabled = true  
+  public_network_access_enabled     = true
   ssl_enforcement_enabled           = true
   ssl_minimal_tls_version_enforced  = "TLS1_2"
 
@@ -44,4 +44,17 @@ resource "azurerm_storage_account" "skedda_blob" {
   location                 = azurerm_resource_group.skedda_resource.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+}
+
+resource "mssql_user" "example" {
+  server {
+    host = "example-sql-server.database.windows.net"
+    azure_login {
+      tenant_id     = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      client_id     = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      client_secret = "terriblySecretSecret"
+    }
+  }
+  username = "user@example.com"
+  roles    = [ "db_owner" ]
 }
