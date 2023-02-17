@@ -34,3 +34,24 @@ variable "skedda_blob" {
   type = string
   default = "MM_skedda_blob"
 }
+
+variable "skedda_app_service_plan" {
+   type = string
+  default = "MM_skedda_app_plan"
+}
+
+variable "skedda_app_service_name" {
+   type = string
+  default = "MM_skedda_app_webapp"
+}
+
+
+variable "skedda_app_github_url" {
+   type = string
+  default = "https://github.com/codeweaver116/skeddaChallenge"
+}
+
+variable "skedda_app_service_os" {
+   type = string
+  default = "windows"
+}

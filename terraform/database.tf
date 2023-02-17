@@ -19,7 +19,7 @@ resource "azurerm_mssql_server" "skedda_sql_server" {
   ssl_minimal_tls_version_enforced  = "TLS1_2"
 
    tags = {
-    environment = "Assesment"
+    environment = "MM_Assesment"
   }
 }
 
@@ -34,27 +34,7 @@ resource "azurerm_mssql_database" "skedda_db" {
   zone_redundant = true
 
  tags = {
-    environment = "Assesment"
+    environment = "MM_Assesment"
   }
 }
 
-resource "azurerm_storage_account" "skedda_blob" {
-  name                     = var.skedda_blob
-  resource_group_name      = azurerm_resource_group.skedda_resource.name
-  location                 = azurerm_resource_group.skedda_resource.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
-
-resource "mssql_user" "example" {
-  server {
-    host = "example-sql-server.database.windows.net"
-    azure_login {
-      tenant_id     = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-      client_id     = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-      client_secret = "terriblySecretSecret"
-    }
-  }
-  username = "user@example.com"
-  roles    = [ "db_owner" ]
-}
