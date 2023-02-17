@@ -4,18 +4,12 @@ resource "azurerm_mssql_server" "skedda_sql_server" {
   resource_group_name               = azurerm_resource_group.skedda_resource.name
   administrator_login               = var.sql_server_user #bad practice use secret vault
   administrator_login_password      = var.sql_server_password
-  storage_mb                        = 5120
   version                           = "12.0"
-  auto_grow_enabled                 = true
-  backup_retention_days             = 7
-  geo_redundant_backup_enabled      = true #Geo-backup_enabled for replication
-  infrastructure_encryption_enabled = true
-  public_network_access_enabled     = true
-  ssl_enforcement_enabled           = true
-  ssl_minimal_tls_version_enforced  = "TLS1_2"
 
   tags = {
+
     environment = "dev"
+
   }
 }
 
