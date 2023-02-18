@@ -21,7 +21,7 @@ resource "azurerm_mssql_database" "skedda_db" {
   max_size_gb    = 4
   read_scale     = true
   sku_name       = "S0"
-  zone_redundant = true
+  zone_redundant = true  #This will be available for business plan alone for geo-replication
 
   tags = {
     environment = "dev"

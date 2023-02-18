@@ -1,11 +1,11 @@
 variable "resouce_group" {
   type    = string
-  default = "MM_Skedda_Accessment"
+  default = "mm"
 }
 
 variable "resource_location" {
   type    = string
-  default = "e east-us-2"
+  default = "east-us-2"
 }
 
 variable "sql_server_name" {
@@ -37,7 +37,7 @@ variable "skedda_blob" {
 
 variable "skedda_app_service_plan" {
   type    = string
-  default = "MM_skedda_app_plan"
+  default = "ASP-mm-81b0"
 }
 
 variable "skedda_app_service_name" {
