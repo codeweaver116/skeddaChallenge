@@ -1,3 +1,13 @@
 Deployments description
 Working principles
 Architecture
+
+Proposed Ideal Architecture (A better way of doing This)
+
+1. Architecture
+2. Automation and tools
+2  High availability
+3. security [app security]
+3. disaster recovery
+4. operational overhead and cost
+5. observabillity

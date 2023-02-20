@@ -1,3 +1,4 @@
 
 *.hcl
 *.exe
+terraform/terraform.tfstate
