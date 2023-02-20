@@ -5,25 +5,12 @@ resource "random_integer" "ri" {
   max = 99999
 }
 
-# Create the Linux App Service Plan
-resource "azurerm_service_plan" "skedda_app_service_plan" {
-  name                = "${var.skedda_app_service_plan}-${random_integer.ri.result}"
-  location            = azurerm_resource_group.skedda_resource.location
-  resource_group_name = azurerm_resource_group.skedda_resource.name
-  os_type             = var.skedda_app_service_os
-  sku_name            = "P1v2"
-  tags = {
-
-    environment = "dev"
-  }
-}
-
 # Create the web app, pass in the App Service Plan ID
 resource "azurerm_linux_web_app" "webapp" {
   name                = "${var.skedda_app_service_name}-${random_integer.ri.result}"
-  location            = azurerm_resource_group.skedda_resource.location
-  resource_group_name = azurerm_resource_group.skedda_resource.name
-  service_plan_id     = azurerm_service_plan.skedda_app_service_plan.id
+  location            = data.azurerm_resource_group.skedda_resource.location
+  resource_group_name = data.azurerm_resource_group.skedda_resource.name
+  service_plan_id     = data.azurerm_service_plan.skedda_app_service_plan.id
   https_only          = true
   app_settings = {
     DbConnectionString = "Server=tcp:${azurerm_mssql_server.skedda_sql_server.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_mssql_database.skedda_db.name};Persist Security Info=False;User ID=${azurerm_mssql_server.skedda_sql_server.administrator_login};Password=${azurerm_mssql_server.skedda_sql_server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
@@ -34,7 +21,6 @@ resource "azurerm_linux_web_app" "webapp" {
 
   depends_on = [
 
-    azurerm_service_plan.skedda_app_service_plan,
     azurerm_mssql_server.skedda_sql_server,
     azurerm_mssql_database.skedda_db,
 

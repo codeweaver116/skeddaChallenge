@@ -16,8 +16,11 @@ provider "azurerm" {
 }
 
 
-resource "azurerm_resource_group" "skedda_resource" {
-  name     = var.resouce_group
-  location = var.resource_location
+data "azurerm_resource_group" "skedda_resource" {
+  name = var.resouce_group
 }
 
+data "azurerm_app_service" "skedda_app_service_plan" {
+  name                = "ASP-mm-8221"
+  resource_group_name = data.azurerm_resource_group.skedda_resource.name
+}

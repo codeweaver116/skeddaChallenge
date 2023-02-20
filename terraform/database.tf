@@ -1,7 +1,7 @@
 resource "azurerm_mssql_server" "skedda_sql_server" {
   name                              = var.sql_server_name
-  location                          = azurerm_resource_group.skedda_resource.location
-  resource_group_name               = azurerm_resource_group.skedda_resource.name
+  location                          = data.azurerm_resource_group.skedda_resource.location
+  resource_group_name               = data.azurerm_resource_group.skedda_resource.name
   administrator_login               = var.sql_server_user #bad practice use secret vault
   administrator_login_password      = var.sql_server_password
   version                           = "12.0"
@@ -35,8 +35,8 @@ resource "azurerm_mssql_database" "skedda_db" {
 
 resource "azurerm_storage_account" "skedda_blob" {
   name                     = var.skedda_blob
-  location                 = azurerm_resource_group.skedda_resource.location
-  resource_group_name      = azurerm_resource_group.skedda_resource.name
+  location                 = data.azurerm_resource_group.skedda_resource.location
+  resource_group_name      = data.azurerm_resource_group.skedda_resource.name
   account_tier             = "Standard"
   account_replication_type = "LRS"
 

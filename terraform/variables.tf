@@ -10,12 +10,12 @@ variable "resource_location" {
 
 variable "sql_server_name" {
   type    = string
-  default = "MM-skedda-db-server"
+  default = "mm-skedda-db-server"
 }
 
 variable "sql_db_name" {
   type    = string
-  default = "MM-skedda-db"
+  default = "mm-skedda-db"
 }
 
 
@@ -32,17 +32,17 @@ variable "sql_server_password" {
 
 variable "skedda_blob" {
   type    = string
-  default = "MM-skedda-blob"
+  default = "mmskeddablob564235"
 }
 
 variable "skedda_app_service_plan" {
   type    = string
-  default = "ASP-mm-81b0"
+  default = "ASP-mm-8221"
 }
 
 variable "skedda_app_service_name" {
   type    = string
-  default = "MM-skedda-app-webapp"
+  default = "mm-skedda-app-webapp"
 }
 
 
