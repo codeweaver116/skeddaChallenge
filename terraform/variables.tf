@@ -5,17 +5,17 @@ variable "resouce_group" {
 
 variable "resource_location" {
   type    = string
-  default = "east-us-2"
+  default = "eastus2"
 }
 
 variable "sql_server_name" {
   type    = string
-  default = "MM_skedda_db_server"
+  default = "MM-skedda-db-server"
 }
 
 variable "sql_db_name" {
   type    = string
-  default = "MM_skedda_db"
+  default = "MM-skedda-db"
 }
 
 
@@ -32,7 +32,7 @@ variable "sql_server_password" {
 
 variable "skedda_blob" {
   type    = string
-  default = "MM_skedda_blob"
+  default = "MM-skedda-blob"
 }
 
 variable "skedda_app_service_plan" {
@@ -42,7 +42,7 @@ variable "skedda_app_service_plan" {
 
 variable "skedda_app_service_name" {
   type    = string
-  default = "MM_skedda_app_webapp"
+  default = "MM-skedda-app-webapp"
 }
 
 

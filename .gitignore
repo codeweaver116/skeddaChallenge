@@ -2,3 +2,4 @@
 *.hcl
 *.exe
 terraform/terraform.tfstate
+*.info
