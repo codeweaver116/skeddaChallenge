@@ -1,13 +1,38 @@
-Deployments description
-Working principles
-Architecture
+what is Done:
 
-Proposed Ideal Architecture (A better way of doing This)
 
-1. Architecture
-2. Automation and tools
-2  High availability
-3. security [app security]
-3. disaster recovery
-4. operational overhead and cost
-5. observabillity
+
+
+
+CICD Release Pipeline  [see pipeline yaml @ azure-pipelines.yml]
+************************************************************************************
+How it works:
+1. the azure-pipelines.yml listen for change on branch 'main' at the repo: https://github.com/codeweaver116/skeddaChallenge
+2. Pipelines run as per steps and powershell scripts defined. 
+3. Application is build with netcore cli tool to produce /tmp/publish.zip
+5. Azure cli commands to deploy to azure portal
+
+
+
+
+#Disaster Recovery [see pipeline yaml @ azure-pipelines-disaster-recovery.yml]
+************************************************************************************************************************
+The azure-pipelines-disaster-recovery.yml Pipeline is solely for resource creation in the event of a region outage
+
+How to:
+*******
+
+1. change the value of region/location in variable.tf to desired value e.g "useast, useast2"
+2. Trigger the Disaster recovery Pipeline manually/callback url api and watch the creation of resources by terraform.
+
+Note: 
+******
+a. Initial Deployment also builds the latest code at branch 'main' (no need to trigger release pipeline)
+b. subsequently a new pipeline can be configured for the new region (thats if region is hardcoded) 
+c. if region is not hardcorded, modifying the current  deployment pipeline to take resource_location as a variable will be a great idea.
+
+Ideally:
+********* 
+The best way to do this is automating a region health check service to know when a region is down and then a callback url is triggered
+ to automatically triger the DR pipeline to create new infra in provided region. After which CICD release pipeline will be triggered subsequently for app deployment.
+*******************************************************************************************************************************************
