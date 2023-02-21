@@ -6,8 +6,9 @@ pool:
 
 steps:
 - powershell: | 
-         winget install azure-cli
 
+            Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'
+        
   displayName: 'Installing  Azure cli'
 
 - powershell: | 
