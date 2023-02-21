@@ -18,14 +18,15 @@ resource "azurerm_service_plan" "skedda_app_service_plan" {
 # Create the web app, pass in the App Service Plan ID
 
 resource "azurerm_windows_web_app" "skedda_webapp" {
-  name                = "${var.skedda_app_service_name}${random_integer.ri.result}-${data.azurerm_service_plan.skedda_app_service_plan.location}"
+  name                = "${var.skedda_app_service_name}${random_integer.ri.result}-${azurerm_service_plan.skedda_app_service_plan.location}"
   resource_group_name = azurerm_resource_group.skedda_resource_group.name
   location            = azurerm_resource_group.skedda_resource_group.location
   service_plan_id     = azurerm_service_plan.skedda_app_service_plan.id
   app_settings = {
     DbConnectionString = "Server=tcp:${azurerm_mssql_server.skedda_sql_server.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_mssql_database.skedda_db.name};Persist Security Info=False;User ID=${azurerm_mssql_server.skedda_sql_server.administrator_login};Password=${azurerm_mssql_server.skedda_sql_server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
-
+  site_config {}
+  
   depends_on = [
 
     azurerm_mssql_server.skedda_sql_server,

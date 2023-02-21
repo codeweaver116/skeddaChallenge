@@ -16,7 +16,7 @@ resource "azurerm_monitor_metric_alert" "skedda_webapp_Alert" {
   scopes                   = [azurerm_windows_web_app.skedda_webapp.id]
   description              = "description"
   target_resource_type     = "Microsoft.Web/sites"
-  target_resource_location = data.azurerm_service_plan.skedda_app_service_plan.location
+  target_resource_location = azurerm_service_plan.skedda_app_service_plan.location
   frequency                = "PT1M"
   severity                 = 4
   window_size              = "PT5M"

@@ -32,7 +32,7 @@ variable "sql_server_password" {
 
 variable "skedda_blob" {
   type    = string
-  default = "mmskeddablob564235"
+  default = "mmskedda7235"
 }
 
 variable "skedda_app_service_plan" {
