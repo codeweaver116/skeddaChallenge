@@ -22,9 +22,13 @@ steps:
           choco install azure-cli
           choco install git
           choco install terraform
+
   displayName: 'Installing  Rest of dependencies'
 
 - powershell: | 
+          terraform init
+          terraform plan 
+          terraform apply -yes
 
   displayName: 'Provision resources in Terraform '
 
