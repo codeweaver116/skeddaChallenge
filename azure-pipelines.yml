@@ -11,12 +11,36 @@ steps:
   displayName: 'Installing  Chocolatery'
 
 - powershell: | 
+       
+  displayName: 'Installing  .net core framework'
+
+- powershell: | 
           choco install azure-cli
           choco install git
+          winget install Microsoft.DotNet.SDK.Preview  
 
   displayName: 'Installing  Rest of dependencies'
 
 - powershell: | 
+      
+          winget install Microsoft.DotNet.SDK.Preview  
+             
+  displayName: 'Installing  .net 7'
 
-         
-  displayName: 'deploy resources in Terraform '
+
+- powershell: | 
+
+            dotnet restore aspnetcoreapp.csproj --packages .nuget/ --runtime win-x86
+            dotnet publish aspnetcoreapp.csproj -c Release --no-restore --runtime win-x86 --no-self-contained -o ./tmp/publish
+            cd tmp\publish
+            Compress-Archive . publish.zip
+
+  displayName: 'Building Application '
+
+
+
+- powershell: | 
+
+          az webapp deploy --resource-group mm --name <App Service Name> --src-path publish.zip --type zip
+
+  displayName: 'Deploying Application to Azure '
