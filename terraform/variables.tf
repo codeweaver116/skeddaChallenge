@@ -37,7 +37,7 @@ variable "skedda_blob" {
 
 variable "skedda_app_service_plan" {
   type    = string
-  default = "ASP-mm-8221"
+  default = "mm"
 }
 
 variable "skedda_app_service_name" {
@@ -53,5 +53,5 @@ variable "skedda_app_github_url" {
 
 variable "skedda_app_service_os" {
   type    = string
-  default = "Linux"
+  default = "Windows"
 }

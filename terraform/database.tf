@@ -11,6 +11,7 @@ resource "azurerm_mssql_server" "skedda_sql_server" {
     environment = "dev"
 
   }
+
 }
 
 resource "azurerm_mssql_database" "skedda_db" {
@@ -18,10 +19,9 @@ resource "azurerm_mssql_database" "skedda_db" {
   server_id      = azurerm_mssql_server.skedda_sql_server.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
-  max_size_gb    = 4
-  read_scale     = true
-  sku_name       = "S0"
-  zone_redundant = true  #This will be available for business plan alone for geo-replication
+  #read_scale     = true
+  #sku_name       = "S0"
+  #zone_redundant = true  #This will be available for business plan alone for geo-replication
 
   tags = {
     environment = "dev"
