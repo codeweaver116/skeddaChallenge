@@ -1,5 +1,3 @@
-# Disaster recovery  pipeline
-
 pool:
   vmImage: windows-2022
 

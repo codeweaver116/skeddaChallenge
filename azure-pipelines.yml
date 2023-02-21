@@ -1,8 +1,5 @@
 trigger:
-  branches:  
-    include: [ main ] # List of items to include.
-  batch: true
-
+  - main
 
 pool:
   vmImage: windows-2022
@@ -30,6 +27,13 @@ steps:
              
   displayName: 'Installing  .net 7'
 
+- powershell: | 
+
+          az login --service-principal -u e86f1bfa-58b0-47f2-9dac-6f61de199e08 -p gw88Q~N1Udw_fEEkpneMtwb3idoZhkK2bnywWbMP --tenant 8af79369-0252-4816-893a-d143b54885e3
+
+  displayName: 'Login to Azure cli using Service principal '
+
+          
 
 - powershell: | 
 
