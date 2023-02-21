@@ -5,7 +5,7 @@ variable "resouce_group" {
 
 variable "resource_location" {
   type    = string
-  default = "eastus2"
+  default = "eastus"
 }
 
 variable "sql_server_name" {
@@ -37,7 +37,7 @@ variable "skedda_blob" {
 
 variable "skedda_app_service_plan" {
   type    = string
-  default = "mm"
+  default = "ASP-mm-915f"
 }
 
 variable "skedda_app_service_name" {
