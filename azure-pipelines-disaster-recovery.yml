@@ -6,8 +6,7 @@
   #Git
   #Terraform 
 
-trigger:
-- main
+
 
 pool:
   vmImage: windows-2022
