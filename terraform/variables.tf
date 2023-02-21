@@ -55,3 +55,19 @@ variable "skedda_app_service_os" {
   type    = string
   default = "Windows"
 }
+
+variable "skedda_mssql_firewall_rule" {
+  type    = string
+  default = "Mssql_FirewallRule"
+}
+
+variable "azure_monitor_action_group" {
+  type    = string
+  default = "skedda_monitor_action_group"
+}
+
+variable "metric_alert_scopes" {
+  description = "scope of the resource"
+  type        = list(string)
+  default     = ["/subscriptions"]
+}

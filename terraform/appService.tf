@@ -16,7 +16,7 @@ resource "azurerm_windows_web_app" "skedda_webapp" {
     DbConnectionString = "Server=tcp:${azurerm_mssql_server.skedda_sql_server.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_mssql_database.skedda_db.name};Persist Security Info=False;User ID=${azurerm_mssql_server.skedda_sql_server.administrator_login};Password=${azurerm_mssql_server.skedda_sql_server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
   site_config {
-    always_on =false
+    always_on = false
   }
 
   depends_on = [
