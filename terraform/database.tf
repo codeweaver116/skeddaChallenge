@@ -41,22 +41,22 @@ resource "azurerm_storage_account" "skedda_blob" {
   }
 }
 
-# resource "azurerm_mssql_firewall_rule" "skedda_sql_firewall" {
-#   for_each         = toset(azurerm_windows_web_app.skedda_webapp.outbound_ip_address_list)
-#   name             = each.key
-#   server_id        = azurerm_mssql_server.skedda_sql_server.id
-#   start_ip_address = each.key
-#   end_ip_address   = each.key
+resource "azurerm_mssql_firewall_rule" "skedda_sql_firewall" {
+  for_each         = toset(azurerm_windows_web_app.skedda_webapp.outbound_ip_address_list)
+  name             = each.key
+  server_id        = azurerm_mssql_server.skedda_sql_server.id
+  start_ip_address = each.key
+  end_ip_address   = each.key
 
-#   depends_on = [
+  depends_on = [
 
-#     azurerm_mssql_server.skedda_sql_server,
-#     azurerm_mssql_database.skedda_db,
-#     azurerm_windows_web_app.skedda_webapp,
-#     azurerm_storage_account.skedda_blob,
+    azurerm_mssql_server.skedda_sql_server,
+    azurerm_mssql_database.skedda_db,
+    azurerm_windows_web_app.skedda_webapp,
+    azurerm_storage_account.skedda_blob,
 
 
-#   ]
-# }
+  ]
+}
 
 

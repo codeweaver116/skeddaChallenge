@@ -1,5 +1,6 @@
 
 # Generate a random integer to create a globally unique name
+
 resource "random_integer" "ri" {
   min = 10000
   max = 99999
@@ -7,6 +8,7 @@ resource "random_integer" "ri" {
 
 
 # Create the web app, pass in the App Service Plan ID
+
 resource "azurerm_windows_web_app" "skedda_webapp" {
   name                = "${var.skedda_app_service_name}${random_integer.ri.result}-${data.azurerm_service_plan.skedda_app_service_plan.location}"
   location            = data.azurerm_service_plan.skedda_app_service_plan.location
@@ -32,7 +34,8 @@ resource "azurerm_windows_web_app" "skedda_webapp" {
 
 }
 
-#  Deploy code from a public GitHub repo
+ #Deploy code from a public GitHub repo
+
 resource "azurerm_app_service_source_control" "sourcecontrol" {
   app_id                 = azurerm_windows_web_app.skedda_webapp.id
   repo_url               = var.skedda_app_github_url
