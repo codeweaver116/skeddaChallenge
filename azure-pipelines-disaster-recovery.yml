@@ -26,6 +26,7 @@ steps:
   displayName: 'Installing  Rest of dependencies'
 
 - powershell: | 
+
           terraform init
           terraform plan 
           terraform apply -yes
