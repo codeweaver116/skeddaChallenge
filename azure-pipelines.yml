@@ -41,6 +41,6 @@ steps:
 
 - powershell: | 
 
-          az webapp deploy --resource-group mm --name <App Service Name> --src-path publish.zip --type zip
+          az webapp deploy --resource-group mm --name mm-skedda-app-webapp60126-eastus --src-path publish.zip --type zip
 
-  displayName: 'Deploying Application to Azure '
+  displayName: 'Deploying Application to Azure'

@@ -1,13 +1,5 @@
 # Disaster recovery  pipeline
 
-#Required tools
-  #azure cli
-  #chocolatery
-  #Git
-  #Terraform 
-
-
-
 pool:
   vmImage: windows-2022
 
@@ -30,5 +22,5 @@ steps:
           terraform plan 
           terraform apply -yes
 
-  displayName: 'Provision resources in Terraform '
+  displayName: 'Provisioning  resources in Terraform '
 
