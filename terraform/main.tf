@@ -8,12 +8,12 @@ terraform {
 
     }
   }
-  #  backend "azurerm" {
-  #       resource_group_name  = "mm"
-  #       storage_account_name = "terraformstate2343"
-  #       container_name       = "tfstate"
-  #       key                  = "terraform.tfstate"
-  #   }
+   backend "azurerm" {
+        resource_group_name  = "mm"
+        storage_account_name = "terraformstate2343"
+        container_name       = "tfstate"
+        key                  = "terraform.tfstate"
+    }
   required_version = ">= 0.14.9"
 }
 provider "azurerm" {
