@@ -7,7 +7,7 @@
   #Terraform 
 
 trigger:
-  ma
+- main
 
 pool:
   vmImage: windows-2022
@@ -25,6 +25,6 @@ steps:
   displayName: 'Installing  Rest of dependencies'
 
 - powershell: | 
-            
+
   displayName: 'Provision resources in Terraform '
 
