@@ -6,19 +6,9 @@ pool:
 
 steps:
 - powershell: | 
+         winget install azure-cli
 
-        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-  
-  displayName: 'Installing  Chocolatery'
-
-- powershell: | 
-       
-  displayName: 'Installing  .net core framework'
-
-- powershell: | 
-          choco install azure-cli -y
-
-  displayName: 'Installing  Rest of dependencies'
+  displayName: 'Installing  Azure cli'
 
 - powershell: | 
       
