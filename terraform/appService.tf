@@ -25,7 +25,7 @@ resource "azurerm_windows_web_app" "skedda_webapp" {
   app_settings = {
     DbConnectionString = "Server=tcp:${azurerm_mssql_server.skedda_sql_server.fully_qualified_domain_name},1433;Initial Catalog=${azurerm_mssql_database.skedda_db.name};Persist Security Info=False;User ID=${azurerm_mssql_server.skedda_sql_server.administrator_login};Password=${azurerm_mssql_server.skedda_sql_server.administrator_login_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
- 
+
   depends_on = [
 
     azurerm_mssql_server.skedda_sql_server,
@@ -39,7 +39,7 @@ resource "azurerm_windows_web_app" "skedda_webapp" {
 
 }
 
- #Deploy code from a public GitHub repo
+#Deploy code from a public GitHub repo
 
 resource "azurerm_app_service_source_control" "sourcecontrol" {
   app_id                 = azurerm_windows_web_app.skedda_webapp.id

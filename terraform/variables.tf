@@ -71,3 +71,25 @@ variable "metric_alert_scopes" {
   type        = list(string)
   default     = ["/subscriptions"]
 }
+
+#All sensitive values should be moved to azure vault.
+variable "tenant_id" {
+  type    = string
+  default = "8af79369-0252-4816-893a-d143b54885e3"
+}
+
+variable "client_id" {
+  type    = string
+  default = "e86f1bfa-58b0-47f2-9dac-6f61de199e08"
+}
+
+variable "client_secret" {
+  type    = string
+  default = "gw88Q~N1Udw_fEEkpneMtwb3idoZhkK2bnywWbMP"
+}
+
+variable "subscription_id" {
+  type    = string
+  default = "b29e0319-fc3e-4a92-a329-2f42a6b55708"
+}
+

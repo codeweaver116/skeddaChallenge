@@ -1,6 +1,6 @@
 resource "azurerm_monitor_action_group" "ag" {
   name                = var.azure_monitor_action_group
-  resource_group_name = var.resouce_group
+  resource_group_name = azurerm_resource_group.skedda_resource_group.name
   short_name          = "Skedda_AG"
 
   email_receiver {
@@ -11,8 +11,8 @@ resource "azurerm_monitor_action_group" "ag" {
 }
 
 resource "azurerm_monitor_metric_alert" "skedda_webapp_Alert" {
-  name                     = "${azurerm_windows_web_app.skedda_webapp.name}-$monitoring"
-  resource_group_name      = var.resouce_group
+  name                     = "${azurerm_windows_web_app.skedda_webapp.name}-monitoring"
+  resource_group_name      = azurerm_resource_group.skedda_resource_group.name
   scopes                   = [azurerm_windows_web_app.skedda_webapp.id]
   description              = "description"
   target_resource_type     = "Microsoft.Web/sites"
