@@ -12,7 +12,6 @@ variables:
 - name: app_service_name
   value: mm-skedda-app-webapp74222-eastus 
 
-
 steps:
 - powershell: | 
 
