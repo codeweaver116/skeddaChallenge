@@ -37,10 +37,11 @@ steps:
   displayName: 'Login to Azure cli using Service principal '
 
 - powershell: | 
-
+            
             dotnet restore aspnetcoreapp.csproj --packages .nuget/ --runtime win-x86
-            dotnet publish aspnetcoreapp.csproj -c Release --no-restore --runtime win-x86 --no-self-contained -o ./tmp/publish
-            cd tmp\publish
+            mkdir publish
+            dotnet publish aspnetcoreapp.csproj -c Release --no-restore --runtime win-x86 --no-self-contained -o ./publish
+            cd publish
             Compress-Archive . publish.zip
 
   displayName: 'Building Application '
