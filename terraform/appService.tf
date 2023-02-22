@@ -42,12 +42,12 @@ resource "azurerm_windows_web_app" "skedda_webapp" {
 
 #Deploy code from a public GitHub repo
 
-resource "azurerm_app_service_source_control" "sourcecontrol" {
-  app_id                 = azurerm_windows_web_app.skedda_webapp.id
-  repo_url               = var.skedda_app_github_url
-  branch                 = "main"
-  use_manual_integration = true
-  use_mercurial          = false
+# resource "azurerm_app_service_source_control" "sourcecontrol" {
+#   app_id                 = azurerm_windows_web_app.skedda_webapp.id
+#   repo_url               = var.skedda_app_github_url
+#   branch                 = "main"
+#   use_manual_integration = true
+#   use_mercurial          = false
 
-}
+# }
 
