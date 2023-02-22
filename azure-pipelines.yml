@@ -10,7 +10,8 @@ variables:
   value: mm 
 
 - name: app_service_name
-  value: mm-skedda-app-webapp74222-eastus 
+  value: mm-skedda-app-webapp48864-eastus
+ 
 
 steps:
 - powershell: | 
@@ -46,7 +47,7 @@ steps:
 
   displayName: 'Building Application '
 
-  
+
 - powershell: | 
 
           az webapp deploy --resource-group $(resource_group) --name $(app_service_name) --src-path ./publish.zip --type zip
