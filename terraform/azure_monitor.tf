@@ -32,6 +32,12 @@ resource "azurerm_monitor_metric_alert" "skedda_webapp_Alert" {
   action {
     action_group_id = azurerm_monitor_action_group.ag.id
   }
+
+  
+  depends_on = [
+    azurerm_windows_web_app.skedda_webapp
+  ]
+
 }
 
 

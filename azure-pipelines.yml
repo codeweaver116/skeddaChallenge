@@ -10,7 +10,7 @@ variables:
   value: mm 
 
 - name: app_service_name
-  value: mm-skedda-app-webapp48864-eastus
+  value: mm-skedda-app-webapp64342-eastus
  
 
 steps:
