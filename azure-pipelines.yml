@@ -7,7 +7,7 @@ pool:
 
 variables:
 - name: resource_group
-  value: mm 
+  value: mm1
 
 - name: app_service_name
   value: mm-skedda-app-webapp64342-eastus
@@ -50,6 +50,6 @@ steps:
 
 - powershell: | 
 
-          az webapp deploy --resource-group $(resource_group) --name $(app_service_name) --src-path ./publish.zip --type zip
+          #az webapp deploy --resource-group $(resource_group) --name $(app_service_name) --src-path ./publish.zip --type zip
 
   displayName: 'Deploying Application to Azure'
