@@ -27,7 +27,7 @@ resource "azurerm_mssql_database" "skedda_db" {
   license_type   = "LicenseIncluded"
   max_size_gb    = 1
   read_scale     = true
-  sku_name       = "S0"
+  sku_name       = "P1"
   #zone_redundant = true #Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. This property is only settable for Premium and Business Critical databases.
 
   tags = {
@@ -41,7 +41,7 @@ resource "azurerm_mssql_database" "skedda_db" {
 }
 
 resource "azurerm_storage_account" "skedda_blob" {
-  name                     = "${var.skedda_blob}${azurerm_service_plan.skedda_app_service_plan.location}"
+  name                     = "${var.skedda_blob}${azurerm_service_plan.skedda_app_service_plan.location}${random_integer.rii.result}"
   resource_group_name      = azurerm_resource_group.skedda_resource_group.name
   location                 = azurerm_resource_group.skedda_resource_group.location
   account_tier             = "Standard"
@@ -52,14 +52,14 @@ resource "azurerm_storage_account" "skedda_blob" {
   }
 }
 
-# resource "azurerm_mssql_firewall_rule" "skedda_sql_firewall" {
+resource "azurerm_mssql_firewall_rule" "skedda_sql_firewall" {
 
-#   for_each         = toset(azurerm_windows_web_app.skedda_webapp.outbound_ip_address_list)
-#   name             = each.key
-#   server_id        = azurerm_mssql_server.skedda_sql_server.id
-#   start_ip_address = each.key
-#   end_ip_address   = each.key
+  for_each         = toset(azurerm_windows_web_app.skedda_webapp.outbound_ip_address_list)
+  name             = each.key
+  server_id        = azurerm_mssql_server.skedda_sql_server.id
+  start_ip_address = each.key
+  end_ip_address   = each.key
 
-# }
+}
 
 

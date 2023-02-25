@@ -29,9 +29,9 @@ steps:
 
 - powershell: | 
           cd terraform
-          terraform init
-          terraform plan 
-          terraform apply -y
+          # terraform init
+          # terraform plan 
+          # terraform apply -y
 
   displayName: 'Provisioning  resources in Terraform '
 
