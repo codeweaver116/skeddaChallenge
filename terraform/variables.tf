@@ -1,6 +1,6 @@
 variable "resouce_group" {
   type    = string
-  default = "mm1"
+  default = "mm-DR"
 }
 
 variable "resource_location" {

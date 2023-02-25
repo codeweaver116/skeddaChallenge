@@ -28,10 +28,10 @@ steps:
 
 
 - powershell: | 
-          # cd terraform
-          # terraform init
-          # terraform plan 
-          # terraform apply 
+          cd terraform
+          terraform init
+          terraform plan 
+          terraform apply 
 
   displayName: 'Provisioning  resources in Terraform '
 
