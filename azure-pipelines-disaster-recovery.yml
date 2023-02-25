@@ -15,6 +15,21 @@ steps:
 
 - powershell: | 
 
+        Set-Item -Path env:ARM_CLIENT_ID -Value "e86f1bfa-58b0-47f2-9dac-6f61de199e08"
+
+        Set-Item -Path env:ARM_CLIENT_SECRET -Value "gw88Q~N1Udw_fEEkpneMtwb3idoZhkK2bnywWbMP"
+
+        Set-Item -Path env:ARM_SUBSCRIPTION_ID -Value "b29e0319-fc3e-4a92-a329-2f42a6b55708"
+
+        Set-Item -Path env:ARM_TENANT_ID -Value "8af79369-0252-4816-893a-d143b54885e3"
+
+
+  displayName: 'Setting Terraform environmental variables '
+
+
+
+- powershell: | 
+
           terraform init
           terraform plan 
           terraform apply -yes
