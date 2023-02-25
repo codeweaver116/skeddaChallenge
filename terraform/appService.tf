@@ -44,6 +44,8 @@ resource "azurerm_windows_web_app" "skedda_webapp" {
 }
 
 
+
+
 #Deploy code from a public GitHub repo
 
 resource "azurerm_app_service_source_control" "sourcecontrol" {
