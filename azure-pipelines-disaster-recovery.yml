@@ -8,7 +8,6 @@ steps:
   displayName: 'Installing  Chocolatery'
 
 - powershell: | 
-          choco install azure-cli
           choco install terraform
 
   displayName: 'Installing  Rest of dependencies'
@@ -29,10 +28,10 @@ steps:
 
 
 - powershell: | 
-
-          terraform init
-          terraform plan 
-          terraform apply -yes
+          # cd terraform
+          # terraform init
+          # terraform plan 
+          # terraform apply 
 
   displayName: 'Provisioning  resources in Terraform '
 
